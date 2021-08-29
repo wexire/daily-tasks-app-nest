@@ -13,4 +13,10 @@ export class TasksRepository extends Repository<Task> {
 		await this.save(task);
 		return task;
 	}
+
+	async getTasks(): Promise<Task[]> {
+		const query = this.createQueryBuilder('task');
+		const tasks = await query.getMany();
+		return tasks;
+	}
 }
